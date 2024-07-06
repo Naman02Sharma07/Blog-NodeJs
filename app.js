@@ -5,17 +5,17 @@ const expressLayout = require("express-ejs-layouts")
 
 const connectDB = require("./server/config/db")//now we are integrating the database here 
 const app = express()
-const PORT = 5000 || process.env.PORT;
+const PORT = 3000 || process.env.PORT;
 connectDB();//now using this our databse connects
 app.use(express.static("public"))//this allow us to not goback in the file just directly access all the file by simple put their parent file name by a single slash
 
 //templating engine
-app.use(expressLayout)
+app.use(expressLayout)//we are using the library
 app.set("layout","./layouts/main")
 app.set("view engine","ejs")
 
 
-app.use("/",require("./server/routes/main"))
+app.use("/",require("./server/routes/main"))//this should be the route 
 
 app.listen(PORT, ()=>{
     console.log(`app is listening at the ${PORT}`)

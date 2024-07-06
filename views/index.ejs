@@ -9,16 +9,21 @@
     <h2 class = "articles__heading">Latest Posts</h2>
 
     <ul class ="article-ul">
+
+    
+        <%# here post is something like the the i that we use incode ing a viable just a vraible  %>
+
+        <% data.forEach(post => { %><%# here we are fetching the data insode the loop that is in the data %>
         <li>
-            <a href = "#">
-                <span> Post Title</span>
-                <span class="article-list__date">Date</span>
-            </a>
-            <a href = "#">
-                <span> Post Title</span>
-                <span class="article-list__date">Date</span>
+            <a href = "/post/<%= post._id %>"><%# here we are gicing the idea that we are fetching from out database  %>
+                <span><%= post.title %></span><%# this is the title and date that we are fetching from the database  %>
+                <span class="article-list__date"><%= post.createdAt.toDateString() %></span><%# the toDateString function would only give the required information but although it look good with less info %>
             </a>
         </li>
+        <% }) %><%# i think this is the syntax to put the opening and the closing of the tages of the ejs inside the weird syntak of ejs %>
     </ul>
-    <a href="#" class="pagination">&lt; View Older Posts </a>
+    <h1><%= console.log(nextPage) %></h1><%# this is what i was doing to check whether everthing workd great or not %>
+    <% if (nextPage !== null){ %>
+        <a href="/?page=<%=nextPage%>" class="pagination">&lt; View Older Posts </a>
+    <% } %>
 </section>
