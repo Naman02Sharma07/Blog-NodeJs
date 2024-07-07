@@ -280,8 +280,8 @@ img{
 /*search bar*/
 
 .searchBar{
-    /* visibility: hidden;
-    transform: translateY(-100px);  now out search bar would be visible*/
+    visibility: hidden;
+    transform: translateY(-100px); /* now out search bar would be visible */
     background-color:var(--black);
     padding: 4px 0;
     position: absolute;

@@ -1,3 +1,5 @@
+//this is the routing file where we put all our api 
+
 const express = require("express")
 
 const router = express.Router()
@@ -72,19 +74,20 @@ router.get('', async(req,res) =>{//if we give this request
  * post id
  *  */ 
 
-router.get('/Post/:id', async(req,res) =>{
+router.get('/Post/:id', async(req,res) =>{//this is another route we are red the user id 
     try{
         const locals = {
-            title: "NodeJs Blog",
-            description : "simple blog created with nodejs , express and mongodb",
+            // title: "NodeJs Blog",
+            // description : "simple blog created with nodejs , express and mongodb",
         }
 
-        let  slug = req.params.id;
-
-        const data = await Post.findById({_id : slug});
-        res.render("post",{locals,data})
+        let  slug = req.params.id;//a variable the store the id of the blog title that we click 
+        //now we find the data that the user search for the id from the database 
+        const data = await Post.findById({_id : slug});//await allow us to sop the function until the promise we get from the function that we use to find the the post by the id
+        res.render("post",{locals,data})//we are rendering the file that include these two things in the post.ejs that we have created in the view folder 
     }
-    catch(error){
+    catch(error){//this is the conditon to solve any if we get while during our code
+
         console.log(error)
     }
 });
@@ -92,6 +95,36 @@ router.get('/Post/:id', async(req,res) =>{
 /**post - search term that we get when we put the data 
  * hOME
  *  */
+
+
+router.post('/search', async(req,res) =>{
+    try{
+
+
+        const locals = {//this is a object 
+            title: "search",
+            description : "simple blog created with nodejs , express and mongodb",
+        }
+        let searchTerm = req.body.searchTerm;//this means in search term we are storing the request the user writting
+        const searchSpecialChar = searchTerm.replace(/[^a-zA-Z0-9]/g,"")//this statement will replace all the special character with an empty string
+        // console.log(searchTerm)
+        // res.send(searchTerm)//this is what we get in response to the thing that we type in the search bar 
+        const data = await Post.find({//now here we are finding the data based on that search from the database 
+            $or: [
+                {title:{$regex: new RegExp(searchSpecialChar,'i')}},
+                {body:{$regex: new RegExp(searchSpecialChar,'i')}},
+            ]
+        })
+        //for response we are rendering the data in the search.ejs file that we create in the view 
+        res.render("Search",{//this is what we are asking from the search file that is the data and the locals 
+            data,
+            locals
+        })
+    }
+    catch(error){
+        console.log(error)
+    }
+});
 
 
 

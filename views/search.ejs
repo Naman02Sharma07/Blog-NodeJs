@@ -1,0 +1,17 @@
+<%# this is the search view  %>
+<div class="author">
+    <h1 class="author__heading">Search Results</h1>
+</div>
+
+<section class="articles">
+    <ul class ="article-ul">
+        <% data.forEach(post => { %><%# we are fetching the data we earlier send though the render thing  %>
+        <li>
+            <a href = "/post/<%= post._id %>"><%# we are rendering the list of all the post that have this id as we now have the data so id would intect with it  %>
+                <span><%= post.title %></span><%# this is the title that would be shown and below is the date %>
+                <span class="article-list__date"><%= post.createdAt.toDateString() %></span>
+            </a>
+        </li>
+        <% }) %>
+    </ul>
+</section>
