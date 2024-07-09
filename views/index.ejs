@@ -12,11 +12,11 @@
     <ul class ="article-ul">
 
     
-        <%# here post is something like the the i that we use incode ing a viable just a vraible  %>
+        <%# here post is something like the the i that we use incode being a variable just a variable  %>
 
         <% data.forEach(post => { %><%# here we are fetching the data insode the loop that is in the data %>
         <li>
-            <a href = "/post/<%= post._id %>"><%# here we are gicing the idea that we are fetching from out database  %>
+            <a href = "/post/<%= post._id %>"><%# here we are giting the idea that we are fetching from out database  %>
                 <span><%= post.title %></span><%# this is the title and date that we are fetching from the database  %>
                 <span class="article-list__date"><%= post.createdAt.toDateString() %></span><%# the toDateString function would only give the required information but although it look good with less info %>
             </a>

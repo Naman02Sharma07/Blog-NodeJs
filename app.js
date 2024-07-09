@@ -20,6 +20,8 @@ app.set("view engine","ejs")
 
 
 app.use("/",require("./server/routes/main"))//this should be the route 
+app.use("/",require("./server/routes/admin"))//this should be the route 
+
 
 app.listen(PORT, ()=>{
     console.log(`app is listening at the ${PORT}`)
