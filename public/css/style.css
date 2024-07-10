@@ -309,6 +309,15 @@ img{
 
 /*admin page*/
 
+.admin-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.admin-title .button{
+    padding-top: 40px;
+}
 
 .admin-posts{
     padding: 0;
