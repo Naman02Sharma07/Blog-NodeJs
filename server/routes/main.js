@@ -40,7 +40,8 @@ router.get('', async(req,res) =>{//if we give this request
             locals,
             data,
             current:page,
-            nextPage: hasNextPage ? nextPage : null
+            nextPage: hasNextPage ? nextPage : null,
+            currentRoute: "/"
         })
 
     }
@@ -84,7 +85,9 @@ router.get('/Post/:id', async(req,res) =>{//this is another route we are red the
         let  slug = req.params.id;//a variable the store the id of the blog title that we click 
         //now we find the data that the user search for the id from the database 
         const data = await Post.findById({_id : slug});//await allow us to sop the function until the promise we get from the function that we use to find the the post by the id
-        res.render("post",{locals,data})//we are rendering the file that include these two things in the post.ejs that we have created in the view folder 
+        res.render("post",{locals,data,
+            currentRoute : "/Post"
+        })//we are rendering the file that include these two things in the post.ejs that we have created in the view folder 
     }
     catch(error){//this is the conditon to solve any if we get while during our code
 
@@ -118,7 +121,8 @@ router.post('/search', async(req,res) =>{
         //for response we are rendering the data in the search.ejs file that we create in the view 
         res.render("Search",{//this is what we are asking from the search file that is the data and the locals 
             data,
-            locals
+            locals,
+            currentRoute : "/Search"
         })
     }
     catch(error){
@@ -158,7 +162,9 @@ router.post('/search', async(req,res) =>{
 
 
 router.get('/about',(req,res) =>{
-    res.render("about")
+    res.render("about",{
+        currentRoute : "/about"
+    })
 });
 
 module.exports = router;

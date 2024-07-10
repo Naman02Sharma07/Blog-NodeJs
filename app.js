@@ -4,6 +4,8 @@ require("dotenv").config()//now we are able to use dotenv in our application
 
 const express = require("express")//THIS mean now e import th express server
 const expressLayout = require("express-ejs-layouts")
+const methodOverride = require("method-override")
+const {isActiveRoute} = require("./server/helpers/routeHelper")
 const cookieParser = require("cookie-parser")//this for the cookie
 const MongoStore = require("connect-mongo")
 
@@ -17,6 +19,9 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())//a middle ware that wllow use to show the output in the json format 
 app.use(cookieParser("Keyboard cat"))//the thing inside the brackests would ebsame as that of the session thing as this is the new update
 //templating engine
+app.locals.isActiveRoute = isActiveRoute;
+
+app.use(methodOverride("_method"));
 app.use(expressLayout)//we are using the library
 app.set("layout","./layouts/main")
 app.use(session({
