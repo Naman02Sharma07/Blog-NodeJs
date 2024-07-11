@@ -93,15 +93,23 @@ img{
 /* header*/
 
 /*idk the use of the below code*/
- .header{
-    display: grid;
-    align-items: center;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
+.header {
+    display: flex; /* Use flexbox instead of grid */
+    align-items: center; /* Align items vertically in the center */
+    justify-content: space-between; /* Distribute items evenly along the main axis */
     padding-top: 10px;
-    grid-template-areas:
-    "logo button"
-    "menu menu";
+}
+
+.logo {
+    /* Optional: Adjust logo styles if needed */
+    /* Example styles */
+    margin-right: 20px; /* Add margin to separate logo from other items */
+}
+
+.button {
+    /* Optional: Adjust button styles if needed */
+    /* Example styles */
+    margin-left: 20px; /* Add margin to separate button from other items */
 }
 
 @media only screen and (max-width: 768px){
